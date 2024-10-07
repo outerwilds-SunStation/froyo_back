@@ -1,18 +1,18 @@
 substitutions:
-  _REGION: asia-east1
-  _IMAGE_TAG: $SHORT_SHA
-  _PROJECT_ID : froyo-436105
-  _artifact_repository : froyo-back-artifact
+  # _REGION: asia-east1
+  # _IMAGE_TAG: $SHORT_SHA
+  # _PROJECT_ID : froyo-436105
+  # _artifact_repository : froyo-back-artifact
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
-      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/froyo-back-server:${_IMAGE_TAG}'
+      - 'asia-east1-docker.pkg.dev/froyo-436105/froyo-back-artifact/froyo-back-server:last'
 
 images:
-  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/froyo-back-server:${_IMAGE_TAG}'
+  - 'asia-east1-docker.pkg.dev/froyo-436105/froyo-back-artifact/froyo-back-server:last'
 
 options:
   logging: CLOUD_LOGGING_ONLY
