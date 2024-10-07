@@ -1,0 +1,16 @@
+substitutions:
+  _REGION: asia-east1
+  _IMAGE_TAG: $SHORT_SHA
+  _PROJECT_ID : froyo-436105
+  _artifact_repository : froyo-back-artifact
+  _image_name : froyo-back-server
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/${_image_name}:${_IMAGE_TAG}'
+
+images:
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/${_image_name}:${_IMAGE_TAG}'
