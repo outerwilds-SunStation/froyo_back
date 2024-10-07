@@ -1,10 +1,10 @@
-from fastapi import fastAPI
+from fastapi import FastAPI
 
-app = fastAPI()
+app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello" : "World"}
+    return {"Hello" : "Froyo"}
 
 @app.get("/test")
 def read_test():
