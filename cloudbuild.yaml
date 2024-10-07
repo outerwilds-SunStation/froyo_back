@@ -6,11 +6,7 @@ substitutions:
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - 'asia-east1-docker.pkg.dev/froyo-436105/froyo-back-artifact/froyo-back-server:last'
-      - '.'
+    args: ['build', '-t', 'asia-east1-docker.pkg.dev/froyo-436105/froyo-back-artifact/froyo-back-server:last', '.']
 
 images:
   - 'asia-east1-docker.pkg.dev/froyo-436105/froyo-back-artifact/froyo-back-server:last'
