@@ -10,12 +10,12 @@ steps:
     args:
       - 'build'
       - '-t'
-      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/${_image_name}:${_IMAGE_TAG}'
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/froyo-back-server:${_IMAGE_TAG}'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['echo', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/${_image_name}:${_IMAGE_TAG}']
+    args: ['echo', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/froyo-back-server:${_IMAGE_TAG}']
 
 images:
-  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/${_image_name}:${_IMAGE_TAG}'
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_artifact_repository}/froyo-back-server:${_IMAGE_TAG}'
 
 options:
   logging: CLOUD_LOGGING_ONLY
