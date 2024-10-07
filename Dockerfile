@@ -10,7 +10,6 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install -r req.txt
 
-EXPOSE 8080
 ENV PORT 8080
 
-CMD ["uvicorn", "src.main:app", "--reload", "--host", "0.0.0.0", "--port", "${PORT}"]
+CMD exec uvicorn src.main:app --host 0.0.0.0 --port ${PORT}
