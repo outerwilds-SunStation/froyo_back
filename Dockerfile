@@ -12,4 +12,7 @@ RUN pip install -r req.txt
 
 ENV PORT 8080
 
+COPY keys/datastore-access-key.json /app/datastoreserviceAccountKey.json
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/datastoreserviceAccountKey.json"
+
 CMD exec uvicorn src.main:app --host 0.0.0.0 --port ${PORT}

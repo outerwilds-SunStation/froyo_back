@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "froyo-436105",
+  "private_key_id": "932ec32d0b567b0eaeb885746736feb24c972392",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDnO+L31/1/Xjjv\nNol7vZFkA5PTY/rpDh5Vy1azUM4dzi6gyIGQMyiI7NIcCprw8jrZc/mC3do85O4t\ntY2MFseNXmrak/dkoAd5i9mckoaU/IAEFQ9ap9rphNDPcbCxZOpE1qCamJnnZrF/\nlTbXISFIx/fkY8el5s1b+1ks0xfUpxHXXRlODnpY+ZtLHSQkcTR4ygz3w0nok7vm\nf/7/22+dIuzNngMRrEzjJsa1ArFIiFUEBzOTYkczQSS0ODt8UJbG+23yu8eoJQqc\nC16oLvH2oZiypqCFaUBZSkAxPOK5u4BBTua4em1B0CUM2y23ifTic+20nQ5S6Wgq\nmlS42aCnAgMBAAECggEABC+y377S0ZQAnuATZCCd+bwQ2JJmUALX7MC2LJ/pY2PA\nt1t58QTkFnqHIUfV30fbZeVyHnrqwRB5+Wzgh6k/6qDLeXKVV4aILByqj2mdsyPR\nI4HIGeGRFoo3h5Hs24FStnVWSgY6PxS+YOtwJzvr0NgB9moSCsBfdmtaBXQ66bgl\nydUaSv47SuZ+c0iLYiDWradi56vJ+PF/jjXpaJx+eq6ndaiCPM7xA8Rp+wDqSmPj\n9WLozT8uTwIEPrnEJ+7gB+wRSawgHbdiU4CMuctAdn6zPItE7K4RzgmsPSZNtl72\nIbU5OYZj/RS7O0G3t3IK9DGKy8PdLlMvus60xdhqzQKBgQD//R5sLwtKcYvcW4jR\n8U3LXe+SiWVS7/X+OX7UaRiOs7A0FZ5cYFxGtJ7tqUvX5cfpNiUcVp1ut28jLBfg\n0rBRhn/Me2rkYgThZQKs9rxXDibwabYK+PlCjjJBDHgSPPdyaQ14CSg11BUts73p\n5MPj6qql3z2YawS0hDQtSGf2vQKBgQDnPn04RB40FTdMaj2MojUJaqvA3VWE5Dut\njntC22TlMGeUS7GRestemT1bYgqANfE3NO/3fKNIbDckpgG93patStF1SpB5ldlh\n4G7Ovyc/zcwqOl/sZzhUEw4DEM1CQ3GiCSgYU7S1VMM0oG8m4E+HC7616bpOtFrt\nQmhm+DltMwKBgQCsV2MV/o4hblR05IM2pLh1RCa4hxvaPIdmwpqqsp6/5CWqyys0\nkgNN7uhYpPPUxHRUhAl0DLQtB/4gtdzVlcLzABQmPKj4XS1f+btVaz/ddD+u99yB\ngqF9t3IJ7TUhQj5tnmBdAf06UDB59lrTjxp65VBCIAu+A77FMYRXQDoOGQKBgA2A\n3akSeT0LXB5POebjdftlyj/J7PuEpGN/JX2C+EJV8EZ9oRHgvM16X1XdxMU14S8b\nHUQzeAl7oEC4nPNscxoNe2vA/ezLrlUD2RSjnvQf3WM942oXoPdv4WqWaZYMAC+5\nHylEghHwsDF7iOIZSSuWqP1Qd7uu1nxyW0xgBGJ3AoGBAOc9j4Jdp/u/tNhc7rDv\nd7dM4lih0oGnSbe4RWYGCqmdDZq07KXTC5fJyUK3VQa9VRAey2dxGf+veIMKW68m\nPyADgHGEDbjatnJCMn8GXLIbmoClsfQMkLSK7QJqtzUifRM4yW9hytXac+rknXOU\nDMfEFuIhSfsD0QXfov7deORI\n-----END PRIVATE KEY-----\n",
+  "client_email": "datastore-access@froyo-436105.iam.gserviceaccount.com",
+  "client_id": "107977720396287169434",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/datastore-access%40froyo-436105.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

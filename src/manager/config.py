@@ -1,0 +1,2 @@
+DEV_MODE = True
+PROJECT_ID = "froyo-436105"
