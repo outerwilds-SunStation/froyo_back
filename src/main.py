@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 
 from src.manager.DBManager import DBManager
+from src.models import *
 from src.pic.ImageMaker import ImageMaker
 
 app = FastAPI(
@@ -9,31 +10,14 @@ app = FastAPI(
     version="0.0.1"
 )
 
-@app.get("/",
-         summary="기본 환영 메시지",
-         description="API 서버 활성 테스트용. 아무 기능 없음")
+@app.get("/")
 def read_root():
     return {"Hello" : "Froyo"}
 
-@app.get("/get_nickname",
-         summary="유저 닉네임 조회",
-         description="유저 이메일을 통해 닉네임 조회, 리턴",
-         response = {
-             200 : { "description": "닉네임 조회 성공", "content": { "nickname": str }},
-             400 : { "description": "닉네임 조회 실패", "content": { "error": str }}
-         })
-async def get_nickname(request: Request):
-    """
-    유저 이메일을 통해 닉네임 조회, 리턴
-    
-    Args:
-        email (str): 유저 이메일
-    Returns:
-        string: 닉네임
-    """
-    data = await request.json()
-    email = data.get("email", "")
-    if email == "":
+@app.get("/get_nickname")
+async def get_nickname(request: get_nickname):
+    email = request.email
+    if email == None:
         raise HTTPException(status_code=400, detail="json으로 email 데이터 전달 필요")
 
     db_manager = DBManager.get_db_client()
@@ -42,27 +26,11 @@ async def get_nickname(request: Request):
         raise HTTPException(status_code=400, detail="Nickname not found")
     return {"nickname": nickname}
 
-@app.post("/set_nickname",
-         summary="유저 닉네임 설정",
-         description="유저 이메일과 닉네임을 통해 닉네임 설정, 리턴",
-         response = {
-             200 : { "description": "닉네임 설정 성공", "content": { "result": bool }},
-             400 : { "description": "닉네임 설정 실패", "content": { "error": str }}
-         })
-async def set_nickname(request: Request):
-    """
-    유저 이메일과 닉네임을 통해 닉네임 설정, 리턴
-    
-    Args:
-        email (str): 유저 이메일
-        nickname (str): 닉네임
-    Returns:
-        bool: 닉네임 설정 성공 여부. 성공했을 때에만 True 리턴
-    """
-    data = await request.json()
-    email = data.get("email", "")
-    nickname = data.get("nickname", "")
-    if email == "" or nickname == "":
+@app.post("/set_nickname")
+async def set_nickname(request: set_nickname):
+    email = request.email
+    nickname = request.nickname
+    if email == None or nickname == None:
         raise HTTPException(status_code=400, detail="json으로 email, nickname 데이터 전달 필요")
 
     db_manager = DBManager.get_db_client()
@@ -71,27 +39,12 @@ async def set_nickname(request: Request):
     return db_manager.set_user_nickname(email, nickname)
 
 
-@app.post("/gen_img",
-         summary="이미지 생성",
-         description="이미지 생성 요청, 리턴",
-         response = {
-             200 : { "description": "이미지 생성 성공", "content": { "result": str }},
-             400 : { "description": "이미지 생성 실패", "content": { "error": str }}
-         })
-async def gen_img(request: Request):
-    """
-    이미지 생성 요청, 리턴
-    
-    Args:
-        data (dict): 이미지 생성 요청 데이터
-        email (str): 유저 이메일
-    Returns:
-        string: 이미지 생성 결과
-    """
-    data = await request.json()
-    email = data.get("email", "")
-    image_data = data.get("image", "")
-    if email == "" or image_data == "":
+@app.post("/generate_image")
+async def generate_image(request: generate_image):
+    email = request.email
+    nickname = request.nickname
+    image_data = request.image_data
+    if email == None or nickname == None or image_data == None:
         raise HTTPException(status_code=400, detail="json으로 email, image 데이터 전달 필요")
 
     db_manager = DBManager.get_db_client()
