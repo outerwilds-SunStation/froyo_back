@@ -70,15 +70,3 @@ class DBManager:
         return [doc.to_dict() for doc in docs]
 
 firestore_manager = DBManager()
-    
-    # 단일 문서 가져오기
-user = firestore_manager.get_document('users', 'qwerty61441@gmail.com')
-print("단일 사용자:", user)
-    
-    # 모든 문서 가져오기
-all_users = firestore_manager.get_all_documents('users')
-print("모든 사용자:", all_users)
-    
-    # 조건 검색
-# active_users = firestore_manager.query_documents('users', 'is_active', '==', True)
-# print("활성 사용자:", active_users)
