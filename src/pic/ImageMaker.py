@@ -42,7 +42,7 @@ class ImageMaker():
 
     def get_contours(self, edge, imgContour):
         contours, hierarchy =cv2.findContours(edge, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        min_area = 400
+        min_area = 600
         max_area = edge.shape[0] * edge.shape[1] / 8
         ptsCandidate = []
         approxCandidate = []
@@ -192,9 +192,8 @@ class ImageMaker():
         return response_data
     
     def image_to_base64(self, img):
-        original_height, original_width = img.shape[:2]
-        target_width = 380
-        target_height = int(target_width * (original_height / original_width))
+        target_width = 1280
+        target_height = 720
         resized_img = cv2.resize(img, (target_width, target_height))
         _, buffer = cv2.imencode('.jpg', resized_img)
         img_str = base64.b64encode(buffer).decode()
@@ -202,5 +201,5 @@ class ImageMaker():
         return img_str
 
 
-# a = ImageMaker()
-# a.gen_quiz_image()
+a = ImageMaker()
+a.gen_quiz_image()
