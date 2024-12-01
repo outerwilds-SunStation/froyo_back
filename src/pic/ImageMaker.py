@@ -112,7 +112,9 @@ class ImageMaker():
             approxs.append(approxCandidate[i])
             cnt += 1
 
-        return centers
+
+        int_numbers = [[int(x), int(y)] for x, y in centers]
+        return int_numbers
 
     def dev_img_save(self, src, dst, ref):
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -190,10 +192,15 @@ class ImageMaker():
         return response_data
     
     def image_to_base64(self, img):
-        _, buffer = cv2.imencode('.jpg', img)
+        original_height, original_width = img.shape[:2]
+        target_width = 380
+        target_height = int(target_width * (original_height / original_width))
+        resized_img = cv2.resize(img, (target_width, target_height))
+        _, buffer = cv2.imencode('.jpg', resized_img)
         img_str = base64.b64encode(buffer).decode()
+
         return img_str
 
 
-# a = ImageMaker()
-# a.gen_quiz_image()
+a = ImageMaker()
+a.gen_quiz_image()
