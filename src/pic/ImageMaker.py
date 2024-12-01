@@ -202,5 +202,5 @@ class ImageMaker():
         return img_str
 
 
-a = ImageMaker()
-a.gen_quiz_image()
+# a = ImageMaker()
+# a.gen_quiz_image()
