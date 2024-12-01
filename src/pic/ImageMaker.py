@@ -67,17 +67,28 @@ class ImageMaker():
         # 항상 문제가 달라지게
         indexes = np.random.permutation(np.arange(len(ptsCandidate)))  # 인덱스를 섞음
         cnt = 0
-        min_distance = 10
+        min_distance = 1
 
         # 문제들마다 일정한 거리가 있었으면 좋겠어
         for i in indexes:
             if cnt >= num:
                 break
 
+
             x1 = ptsCandidate[i][0]
             y1 = ptsCandidate[i][1]
             x2 = ptsCandidate[i][2]
             y2 = ptsCandidate[i][3]
+
+            scale_factor = 1.2  # 확대 비율 (20% 더 크게)
+            x_center = (x1 + x2) / 2
+            y_center = (y1 + y2) / 2
+            width = (x2 - x1) * scale_factor
+            height = (y2 - y1) * scale_factor
+            x1 = x_center - width / 2
+            x2 = x_center + width / 2
+            y1 = y_center - height / 2
+            y2 = y_center + height / 2
 
             TOO_CLOSE = False
             # 두 영역 사이의 거리(d)가 너무 가까우면 선택 안하겠어
