@@ -192,8 +192,8 @@ class ImageMaker():
         return response_data
     
     def image_to_base64(self, img):
-        target_width = 1280
-        target_height = 720
+        target_width = 1000
+        target_height = 1000
         resized_img = cv2.resize(img, (target_width, target_height))
         _, buffer = cv2.imencode('.jpg', resized_img)
         img_str = base64.b64encode(buffer).decode()
