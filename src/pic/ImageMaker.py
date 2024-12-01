@@ -62,16 +62,17 @@ class ImageMaker():
         return ptsCandidate,approxCandidate
 
     def quiz(self, ptsCandidate, approxCandidate, num, imgMask, ref):
-        pts = []
+        centers = []  # 중심점 저장할 리스트
         approxs = []
-        #   항상 문제가 달라지게
-        indexes = np.random.permutation(np.arange(len(ptsCandidate)))    #인덱스를 섞습니다
+        # 항상 문제가 달라지게
+        indexes = np.random.permutation(np.arange(len(ptsCandidate)))  # 인덱스를 섞음
         cnt = 0
         min_distance = 10
 
-        #   문제들마다 일정한 거리가 있었으면 좋겠어
+        # 문제들마다 일정한 거리가 있었으면 좋겠어
         for i in indexes:
-            if cnt >= num: break
+            if cnt >= num:
+                break
 
             x1 = ptsCandidate[i][0]
             y1 = ptsCandidate[i][1]
@@ -79,30 +80,28 @@ class ImageMaker():
             y2 = ptsCandidate[i][3]
 
             TOO_CLOSE = False
-            #   두 영역 사이의 거리(d)가 너무 가까우면 선택안하겠어
-            #                  d가 r1 + r2 + min_distance 보다 작으면
-            for j in pts:
-                r1 = np.sqrt((x1-x2)**2 + (y1-y2)**2)/2             #   내 r
-                r2 = np.sqrt((j[0]-j[2])**2 + (j[1]-j[3])**2)/2     #   pts에 있는 r
+            # 두 영역 사이의 거리(d)가 너무 가까우면 선택 안하겠어
+            for j in centers:
+                c1 = [(x1 + x2) / 2, (y1 + y2) / 2]  # 현재 사각형의 중심
+                c2 = j  # 이미 선택된 사각형의 중심
 
-                c1 = [(x1+x2)/2, (y1+y2)/2]
-                c2 = [(j[0]+j[2])/2, (j[1]+j[3])/2]
-    
-                d = np.sqrt((c1[0]-c2[0])**2 + (c1[1]-c2[1])**2)
-                if  d  < r1 + r2 +  min_distance:
+                d = np.sqrt((c1[0] - c2[0])**2 + (c1[1] - c2[1])**2)
+                if d < min_distance:
                     TOO_CLOSE = True
                     break
 
-            if TOO_CLOSE == True: continue
+            if TOO_CLOSE:
+                continue
 
-            approxCandidate[i] = np.int32([approxCandidate[i]])   #   fillpoly에러
-            cv2.fillPoly(imgMask, approxCandidate[i], (0,0,0))
-            cv2.fillPoly(ref , approxCandidate[i], (255,255,255))
+            approxCandidate[i] = np.int32([approxCandidate[i]])  # fillPoly 에러 방지
+            cv2.fillPoly(imgMask, approxCandidate[i], (0, 0, 0))
+            cv2.fillPoly(ref, approxCandidate[i], (255, 255, 255))
 
-            pts.append([x1,y1,x2,y2])
+            centers.append([(x1 + x2) / 2, (y1 + y2) / 2])  # 중심점 저장
             approxs.append(approxCandidate[i])
             cnt += 1
-        return pts
+
+        return centers
 
     def dev_img_save(self, src, dst, ref):
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -160,7 +159,7 @@ class ImageMaker():
 
         # #   퀴즈 후보 & 퀴즈
         ptsCandidate, approxCandidate = self.get_contours(edges, imgContour)
-        pts = self.quiz(ptsCandidate, approxCandidate, 10, imgMask, ref)
+        pts = self.quiz(ptsCandidate, approxCandidate, 5, imgMask, ref)
 
         cv2.xphoto.inpaint(ref, imgMask, dst, 0)
 
@@ -183,3 +182,7 @@ class ImageMaker():
         _, buffer = cv2.imencode('.jpg', img)
         img_str = base64.b64encode(buffer).decode()
         return img_str
+
+
+a = ImageMaker()
+a.gen_quiz_image()
