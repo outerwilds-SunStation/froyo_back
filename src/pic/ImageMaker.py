@@ -42,7 +42,7 @@ class ImageMaker():
 
     def get_contours(self, edge, imgContour):
         contours, hierarchy =cv2.findContours(edge, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        min_area = 600
+        min_area = 400
         max_area = edge.shape[0] * edge.shape[1] / 8
         ptsCandidate = []
         approxCandidate = []
