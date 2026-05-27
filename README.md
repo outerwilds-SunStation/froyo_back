@@ -52,9 +52,6 @@ Froyo 서비스를 위한 백엔드 API 서버입니다.
 - Uvicorn
 - Pydantic
 - Google Cloud Firestore
-- OpenCV
-- NumPy
-- Pillow
 - Docker
 - Google Cloud Build
 
